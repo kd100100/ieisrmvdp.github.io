@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		#container
+		{
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+	<div id="container">
+		<input id="mail" type="email" placeholder="mail">
+		<button onclick="auth()">Click Here</button>Enter your 
+	</div>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyB850_QgXuppSPpgIHpOOswd8y4JEEc1bw",
+    authDomain: "testpro-7ea1b.firebaseapp.com",
+    databaseURL: "https://testpro-7ea1b.firebaseio.com",
+    projectId: "testpro-7ea1b",
+    storageBucket: "testpro-7ea1b.appspot.com",
+    messagingSenderId: "1078108434817",
+    appId: "1:1078108434817:web:1e82a19150c9956996b880"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script type="text/javascript">
+	function auth()
+	{
+		let mail = document.getElementById("mail").value;
+		var x;
+		var data = firebase.database().ref();
+		//data.child('New').set(mail);
+		data.once("value", function(snapshot){
+			x = snapshot.val();
+			let isthere = false;
+			for(i in x)
+			{
+				if(mail == x[i])
+				{
+					isthere=true;
+				}
+			}
+			if(isthere)
+			{
+				window.alert("Already responded");
+			}
+			else
+			{
+				window.alert("Welcome");
+				data.push().set(mail);
+				location.replace("https://ieisrmvdp.github.io/");
+			}
+		});
+	}
+</script>
+</body>
+</html>
