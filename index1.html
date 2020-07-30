@@ -170,6 +170,11 @@ Your browser does not support the video tag.
 </script>
 
 <script type="text/javascript">
+  function vaildmail(x)
+  {
+    z=x.split("@");
+    return z.length==2;
+  }
   function auth()
   {
     let mail = document.getElementById("mail").value;
@@ -189,6 +194,10 @@ Your browser does not support the video tag.
       if(isthere)
       {
         window.alert("Already responded");
+      }
+      else if(!vaildmail(mail))
+      {
+        window.alert("Invalid mail");
       }
       else
       {
